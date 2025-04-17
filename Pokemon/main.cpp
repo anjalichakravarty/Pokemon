@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+<<<<<<< Updated upstream
 //Define an enum of pokemon choices
 enum class PokemonChoice {
     Charmander,
@@ -15,6 +16,11 @@ enum class PokemonType {
     Water,
     Earth,
     Normal
+=======
+class Pokemon
+{
+    //Empty Class
+>>>>>>> Stashed changes
 };
 
 int main() {
