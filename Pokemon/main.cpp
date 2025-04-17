@@ -5,6 +5,7 @@ int main() {
     
     //variables 
     string player_name;
+    string chosen_pokemon;
 
     //introduction by professor
     cout << "Professor Oak: Welcome to the world of Pokémon! I am Professor Oak.\n";
@@ -18,27 +19,34 @@ int main() {
     //choosing the pokemon
     cout << "Professor Oak: I have three Pokémon with me";
     cout << "You can choose one of the following Pokémon:\n";
-    cout << "1. Bulbasaur\n2. Charmander\n3. Squirtle\n";
+    cout << "1. Charmander\n2. Bulbasaur\n3. Squirtle\n";
 
     int choice;
     cout << "Which Pokémon would you like to choose? Enter the number: ";
     cin >> choice;
 
-    if (choice == 1)
+    switch (choice)
     {
-        cout << "You chose Bulbasaur! A wise choice.\n";
-    }
-    else if (choice == 2)
-    {
-        cout << "You chose Charmander! A fiery choice.\n";
-    }
-    else if (choice ==3)
-    {
-        cout << "You chose Squirtle! A cool choice.\n";
-    }
-    else
-    {
-        cout << "Invalid choice. Please restart the game.\n";
+    case 1:
+        chosen_pokemon = "Charmander";
+        cout << "Professor Oak: A fiery choice! Charmander is yours!\n";
+        break;
+
+    case 2:
+        chosen_pokemon = "Bulbasaur";
+        cout << "Professor Oak: A fine choice! Bulbasaur is always ready to grow on you!\n";
+        break;
+
+    case 3:
+        chosen_pokemon = "Squirtle";
+        cout << "Professor Oak: Splendid! Squirtle will keep you cool under pressure!\n";
+        break;
+    
+    default:
+        cout << "Professor Oak: Hmm, that doesn't seem right. Let me choose for you...\n";
+        chosen_pokemon = "Pikachu"; //Default if no vaild choice is made
+        cout << "Professor Oak: Just kidding! Let's go with Pikachu, the surprise guest.\n";
+        break;
     }
     
 
