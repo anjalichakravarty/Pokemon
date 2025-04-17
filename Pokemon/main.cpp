@@ -17,7 +17,7 @@ int main() {
 
     //introduction by professor
     cout << "Professor Oak: Welcome to the world of Pokémon! I am Professor Oak.\n";
-    cout << "Professor Oak: Today is a momentous day—you’ll be choosing your very first Pokémon.";
+    cout << "Professor Oak: Today is a momentous day—you will be choosing your very first Pokémon.\n"<<endl;
 
     //taking player name as input
     cout << "Professor Oak: But before you embark on your journey, tell us your name!";
