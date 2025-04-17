@@ -2,18 +2,26 @@
 using namespace std;
 
 //Define an enum of pokemon choices
-enum PokemonChoice {
+enum class PokemonChoice {
     Charmander,
     Bulbasaur,
     Squirtle,
     InvalidChoice
 };
 
+enum class PokemonType {
+    Fire,
+    Electric,
+    Water,
+    Earth,
+    Normal
+};
+
 int main() {
     
     //variables 
     string player_name;
-    PokemonChoice chosen_pokemon = InvalidChoice; //default to an invalid choice
+    PokemonChoice chosen_pokemon = PokemonChoice::InvalidChoice; //default to an invalid choice
 
     //introduction by professor
     cout << "Professor Oak: Welcome to the world of Pokémon! I am Professor Oak.\n";
@@ -36,23 +44,23 @@ int main() {
     switch (choice)
     {
     case 1:
-        chosen_pokemon = Charmander;
+        chosen_pokemon = PokemonChoice::Charmander;
         cout << "Professor Oak: A fiery choice! Charmander is yours!\n";
         break;
 
     case 2:
-        chosen_pokemon = Bulbasaur;
+        chosen_pokemon = PokemonChoice::Bulbasaur;
         cout << "Professor Oak: A fine choice! Bulbasaur is always ready to grow on you!\n";
         break;
 
     case 3:
-        chosen_pokemon = Squirtle;
+        chosen_pokemon = PokemonChoice::Squirtle;
         cout << "Professor Oak: Splendid! Squirtle will keep you cool under pressure!\n";
         break;
     
     default:
         cout << "Professor Oak: Hmm, that doesn't seem right. Let me choose for you...\n";
-        chosen_pokemon = Charmander; //Default if no vaild choice is made
+        chosen_pokemon = PokemonChoice::Charmander; //Default if no vaild choice is made
         cout << "Professor Oak: Just kidding! Let's go with Charmander, the fiery dragon in the making!\n";
         break;
     }
