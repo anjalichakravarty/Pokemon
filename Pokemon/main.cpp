@@ -1,6 +1,7 @@
 #include "PokemonType.h"
 #include "PokemonChoice.h"
 #include "Utility.h"
+#include "Player.h"
 #include <iostream>
 #include <limits>
 #include <string> 
