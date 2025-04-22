@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string> 
+#include "PokemonType.h"
+#include "PokemonChoice.h"
 using namespace std;
 
 //Function to clear console
@@ -16,20 +18,6 @@ void waitForEnter(){
     cin.get(); //Wait for Enter key
 }
 
-enum class PokemonChoice{
-    CHARMANDER = 1,
-    BULBASAUR,
-    SQUIRTLE,
-    PIKACHU //Default choice
-};
-
-enum class PokemonType{
-    FIRE,
-    GRASS,
-    WATER,
-    ELECTRIC,
-    NORMAL //Added to default constructor
-};
 
 class Pokemon
 {
@@ -261,9 +249,8 @@ int main() {
     //Explain the main quest
     professor.explainMainQuest(player);
 
-    //Conclude the first chapter
-    cout << "Professor Oak: " << player.chosenPokemon.name << " and you, " << player.name << ",are going to be the best of friends!\n";
-    cout << "Professor Oak: Your journey begins now! Get ready to explore the vast world of Pokemon!\n";
+    //Start the main game loop
+    gameLoop(player);
 
     return 0;
 }
