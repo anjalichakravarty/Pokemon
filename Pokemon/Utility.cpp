@@ -9,7 +9,7 @@ void Utility::clearConsole(){
     #ifdef _WIN32
         system("cls");
     #else
-        system("clear");
+        (void)system("clear");
     #endif
 }
 
