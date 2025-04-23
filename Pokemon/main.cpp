@@ -1,14 +1,14 @@
-#include "PokemonType.h"
-#include "PokemonChoice.h"
-#include "Utility.h"
 #include "Player.h"
+#include "Pokemon.h"
+#include "PokemonChoice.h"
+#include "PokemonType.h"
+#include "Utility.h"
 #include <iostream>
 #include <limits>
 #include <string> 
 
 
 using namespace std;
-
 
 class ProfessorOak 
 {
