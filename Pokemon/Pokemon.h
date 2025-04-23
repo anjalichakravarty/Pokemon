@@ -10,6 +10,7 @@ class Pokemon {
         string name;
         PokemonType type;
         int health;
+        int maxHealth;
 
         //Default constructor
         Pokemon();
@@ -23,5 +24,7 @@ class Pokemon {
         //Destructor
         ~Pokemon();
 
-        void attack();
+        void attack(Pokemon &target);
+        void takeDamage(int damage); //Method to reduce HP
+        bool isFainted() const; // Method to check if the Pokemon has fainted
 };
