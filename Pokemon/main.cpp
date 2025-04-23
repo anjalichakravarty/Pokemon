@@ -6,87 +6,9 @@
 #include <limits>
 #include <string> 
 
+
 using namespace std;
 
-
-
-class Pokemon
-{
-    public:
-        string name;
-        PokemonType type;
-        int health;
-
-        //Default constructor
-        Pokemon(){
-            name = "Unknown";
-            type = PokemonType::NORMAL;
-            health = 50;
-        }
-
-        //Parametrised constructor
-        Pokemon(string p_name, PokemonType p_type, int p_health){
-            name = p_name;
-            type = p_type;
-            health = p_health;
-        }
-
-        //Copy constructor
-        Pokemon(const Pokemon &other){
-            name = other.name;
-            type = other.type;
-            health = other.health;
-        }
-
-        //Destructor
-        ~Pokemon(){
-            
-        }
-
-        void attack(){
-            cout << name << "attacks with a powerful move!\n";
-        }
-};
-
-class Player 
-{
-    public:
-        //Attributes
-        string name;
-        Pokemon chosenPokemon;
-
-        //Default constructor
-        Player(){
-            name = "Trainer";
-            chosenPokemon = Pokemon(); //Using the default Pokemon constructor
-        }
-
-        //Parametrised constructor
-        Player(string p_name, Pokemon p_chosenPokemon){
-            name = p_name;
-            chosenPokemon = p_chosenPokemon;
-        }
-
-        //Method to choose Pokemon
-        void choosePokemon(int choice){
-            switch ((PokemonChoice)choice) { 
-                case PokemonChoice::CHARMANDER:
-                        chosenPokemon = Pokemon("Charmander", PokemonType::FIRE, 100); 
-                        break; 
-                case PokemonChoice::BULBASAUR: 
-                        chosenPokemon = Pokemon("Bulbasaur", PokemonType::GRASS, 100); 
-                        break; 
-                case PokemonChoice::SQUIRTLE: 
-                        chosenPokemon = Pokemon("Squirtle", PokemonType::WATER, 100); 
-                        break; 
-                default: 
-                        chosenPokemon = Pokemon("Pikachu", PokemonType::ELECTRIC, 100); 
-                        break; 
-            } 
-            cout << "Player " << name << " chose " << chosenPokemon.name << "!\n";
-        }
-
-};
 
 class ProfessorOak 
 {

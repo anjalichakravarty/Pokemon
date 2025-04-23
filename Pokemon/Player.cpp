@@ -1,10 +1,13 @@
 // Player.cpp
 #include "Player.h"
+#include "PokemonType.h"
+#include "PokemonChoice.h"
+#include "Utility.h"
 #include <iostream>
 using namespace std;
 
 
-Player(){
+Player::Player(){
     name = "Trainer";
     chosenPokemon = Pokemon(); //Using the default Pokemon constructor
 }
@@ -15,7 +18,7 @@ Player::Player(string p_name, Pokemon p_chosenPokemon){
     chosenPokemon = p_chosenPokemon;
 }
 
-void choosePokemon(int choice){
+void Player::choosePokemon(int choice){
     switch ((PokemonChoice)choice) { 
         case PokemonChoice::CHARMANDER:
                 chosenPokemon = Pokemon("Charmander", PokemonType::FIRE, 100); 
