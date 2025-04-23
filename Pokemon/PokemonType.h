@@ -4,5 +4,8 @@ enum class PokemonType{
     GRASS,
     WATER,
     ELECTRIC,
+    BUG,
+    POISON,
+    ROCK,
     NORMAL //Added to default constructor
 };
