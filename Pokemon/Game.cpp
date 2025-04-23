@@ -10,9 +10,9 @@ Game::Game(){
     // Create a sample grass environment with actual Pokemon objects
     forestGrass = {
         "Forest",
-        {Pokemon("Pidgey", PokemonType::NORMAL, 40),
-        Pokemon("Caterpie", PokemonType::BUG, 35),
-        Pokemon("Zubat", PokemonType::POISON, 30)},
+        {Pokemon("Pidgey", PokemonType::NORMAL, 40, 7),
+        Pokemon("Caterpie", PokemonType::BUG, 35, 5),
+        Pokemon("Zubat", PokemonType::POISON, 30, 8)},
         70
     };
 }
@@ -48,9 +48,12 @@ void Game::gameLoop(Player &player)
                 cout << "A wild " << encounteredPokemon.name << " appeared!\n";
                 break;}
             
-            case 2:
-                cout << "You head to the PokeCenter, but Nurse Joy is out on a coffee break. Guess your Pokemon will have to tough it out for now!\\n";
+            case 2:{
+                cout << "You head to the PokeCenter.\n";
+                player.chosenPokemon.heal(); //Heal the player's Pokemon
+                cout << player.chosenPokemon.name << "'s health is fully restored!\n";
                 break;
+                }
             
             case 3:
                 cout << "You march up to the Gym, but it's closed for renovations. Seems like even Gym Leaders need a break!\\n";
