@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "Pokemon.h"
 #include "PokemonChoice.h"
 #include "PokemonType.h"
 #include "Utility.h"
