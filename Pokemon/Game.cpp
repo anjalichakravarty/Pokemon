@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Player.h"
 #include "PokemonType.h"
+#include "BattleManager.h"
 #include "Utility.h"
 #include "WildEncounterManager.h"
 #include <iostream>
@@ -19,6 +20,7 @@ Game::Game(){
 
 void Game::gameLoop(Player &player)
 {
+    BattleManager battleManager;
     int choice;
     bool keepPlaying = true;
 
@@ -64,7 +66,7 @@ void Game::gameLoop(Player &player)
                 break;
 
             case 5:
-                cout << "You try to quit, but Professor Oak's voice echoes: 'There's no quitting in Pokemon training!'\\n";
+                keepPlaying = false;
                 break;
 
             default:
