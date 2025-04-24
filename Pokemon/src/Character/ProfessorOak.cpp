@@ -1,6 +1,6 @@
-#include "ProfessorOak.h"
-#include "Player.h"
-#include "Utility.h"
+#include "../../include/Character/ProfessorOak.h"
+#include "../../include/Character/Player/Player.h"
+#include "../../include/Utility/Utility.h"
 #include <iostream>
 using namespace std;
 
