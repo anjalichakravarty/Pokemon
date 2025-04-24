@@ -7,9 +7,12 @@
 using namespace std;
 
 namespace N_Character{
+
     namespace N_Player {
+
         using namespace N_Utility;
         using namespace N_Pokemon;
+        using namespace N_Pokemons
 
         Player::Player(){
             name = "Trainer";
