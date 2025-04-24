@@ -4,18 +4,22 @@
 #include "Pokemon.h"
 using namespace std;
 
+namespace N_Character {
+    namespace N_Player {
 
-class Player {
-    public:
-        string name;
-        Pokemon chosenPokemon;
+        class Player {
+            public:
+                string name;
+                N_Pokemon::Pokemon chosenPokemon;
 
-        //Default constructor
-        Player();
+                //Default constructor
+                Player();
 
-        //Parametrised constructor
-        Player(string p_name, Pokemon p_chosenPokemon);
+                //Parametrised constructor
+                Player(string p_name, N_Pokemon::Pokemon p_chosenPokemon);
 
-        //Method to choose Pokemon
-        void choosePokemon(int choice);
-};
+                //Method to choose Pokemon
+                void choosePokemon(int choice);
+        };
+    }
+}

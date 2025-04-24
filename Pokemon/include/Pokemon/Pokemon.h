@@ -3,31 +3,34 @@
 
 using namespace std;
 
-enum class PokemonType;
+namespace N_Pokemon {
 
-class Pokemon {
-    public:
-        string name;
-        PokemonType type;
-        int health;
-        int maxHealth;
-        int attackPower;
+    enum class PokemonType;
 
-        //Default constructor
-        Pokemon();
+    class Pokemon {
+        public:
+            string name;
+            PokemonType type;
+            int health;
+            int maxHealth;
+            int attackPower;
 
-        //Parametrised constructor
-        Pokemon(string p_name, PokemonType p_type, int p_maxHealth, int p_attackPower);
+            //Default constructor
+            Pokemon();
 
-        //Copy constructor
-        Pokemon(const Pokemon &other);
+            //Parametrised constructor
+            Pokemon(string p_name, PokemonType p_type, int p_maxHealth, int p_attackPower);
 
-        //Destructor
-        ~Pokemon();
+            //Copy constructor
+            Pokemon(const Pokemon &other);
 
-        void attack(Pokemon &target);
-        void takeDamage(int damage); //Method to reduce HP
-        bool isFainted() const; // Method to check if the Pokemon has fainted
-        void heal(); // Method to restore HP to max
+            //Destructor
+            ~Pokemon();
 
-};
+            void attack(Pokemon &target);
+            void takeDamage(int damage); //Method to reduce HP
+            bool isFainted() const; // Method to check if the Pokemon has fainted
+            void heal(); // Method to restore HP to max
+
+    };
+}

@@ -1,8 +1,9 @@
 #include <vector>
 #include "Grass.h"
 
-
-class WildEncounterManager{
-    public:
-        Pokemon getRandomPokemonFromGrass(const Grass &grass);
-};
+namespace N_Battle{
+    class WildEncounterManager{
+        public:
+            N_Pokemon::Pokemon getRandomPokemonFromGrass(const N_Pokemon::Grass &grass);
+    };
+}

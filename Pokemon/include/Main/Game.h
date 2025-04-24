@@ -1,12 +1,15 @@
+#include "../Character/Player/Player.h"
 #include "Grass.h"
 
-class Player;
+namespace N_Main {
+    using namespace N_Pokemon;
 
-class Game{
-    private:
-        Grass forestGrass;
-    public:
-        Game();
+    class Game{
+        private:
+            Grass forestGrass;
+        public:
+            Game();
 
-        void gameLoop(Player &player);
-};
+            void gameLoop(N_Character::N_Player::Player &player);
+    };
+}
