@@ -21,7 +21,7 @@ void BattleManager::battle(){
     {
         if (battleState.playerTurn)
         {
-            battleState.playerPokemon.attack(battleState.wildPokemon);
+            battleState.playerPokemon.thunderShock(battleState.wildPokemon);
         }
         else 
         {
