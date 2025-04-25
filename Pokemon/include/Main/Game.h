@@ -1,8 +1,10 @@
+#pragma once
 #include "../Character/Player/Player.h"
-#include "Grass.h"
+#include "../Pokemon/Grass.h"
 
 namespace N_Main {
     using namespace N_Pokemon;
+    using namespace N_Character::N_Player;
 
     class Game{
         private:
@@ -11,5 +13,6 @@ namespace N_Main {
             Game();
 
             void gameLoop(N_Character::N_Player::Player &player);
+            void visitPokeCenter(N_Character::N_Player::Player &player);
     };
 }

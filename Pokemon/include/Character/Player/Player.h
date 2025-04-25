@@ -1,7 +1,7 @@
 // Player.h
 
 #include <string>
-#include "Pokemon.h"
+#include "../../Pokemon/Pokemon.h"
 using namespace std;
 
 namespace N_Character {

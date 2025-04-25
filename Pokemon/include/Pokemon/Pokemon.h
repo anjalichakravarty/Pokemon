@@ -8,12 +8,14 @@ namespace N_Pokemon {
     enum class PokemonType;
 
     class Pokemon {
-        public:
+        protected:
             string name;
             PokemonType type;
             int health;
             int maxHealth;
             int attackPower;
+        public:
+            
 
             //Default constructor
             Pokemon();
