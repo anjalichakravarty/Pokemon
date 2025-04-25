@@ -1,33 +1,40 @@
 #include "../../include/Main/Game.h"
-#include "../../include/Character/Player/Player.h"
-#include "../../include/Pokemon/PokemonType.h"
 #include "../../include/Battle/BattleManager.h"
-#include "../../include/Utility/Utility.h"
 #include "../../include/Battle/WildEncounterManager.h"
+#include "../../include/Character/Player/Player.h"
+#include "../../include/Pokemon/Pokemons/Caterpie.h"
+#include "../../include/Pokemon/Pokemons/Pidgey.h"
+#include "../../include/Pokemon/Pokemons/Zubat.h"
+#include "../../include/Utility/Utility.h"
+
 #include <iostream>
 using namespace std;
 
 namespace N_Main {
     using namespace N_Utility;
     using namespace N_Pokemon;
+    using namespace N_Pokemon::N_Pokemons;
+    using namespace N_Battle;
     using namespace N_Character::N_Player;
-
+    
     Game::Game(){
         // Create a sample grass environment with actual Pokemon objects
         forestGrass = {
             "Forest",
-            {Pokemon("Pidgey", PokemonType::NORMAL, 40, 7),
-            Pokemon("Caterpie", PokemonType::BUG, 35, 5),
-            Pokemon("Zubat", PokemonType::POISON, 30, 8)},
+            {
+                Pidgey(), Caterpie(), Zubat()
+            },
             70
         };
     }
 
-    void Game::gameLoop(Player &player)
+    void Game::gameLoop(N_Character::N_Player::Player &player)
     {
         BattleManager battleManager;
         int choice;
         bool keepPlaying = true;
+        WildEncounterManager encounterManager;
+        N_Pokemon::Pokemon wildPokemon;
 
         while (keepPlaying){
             
@@ -49,16 +56,14 @@ namespace N_Main {
             //Process the players choice and display the corresponding message
             switch(choice) {
                 case 1:{
-                    // Create a scope within case 1
-                    WildEncounterManager encounterManager;
-                    Pokemon encounteredPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
-                    cout << "A wild " << encounteredPokemon.name << " appeared!\n";
-                    break;}
+                    // Create a scope within case 1                   
+                    wildPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
+                    battleManager.startBattle(player, wildPokemon);
+                    break;
+                }
                 
                 case 2:{
-                    cout << "You head to the PokeCenter.\n";
-                    player.chosenPokemon.heal(); //Heal the player's Pokemon
-                    cout << player.chosenPokemon.name << "'s health is fully restored!\n";
+                    visitPokeCenter(player);
                     break;
                     }
                 
@@ -83,6 +88,22 @@ namespace N_Main {
             }
 
             cout << "Goodbye, " << player.name << "! Thank you for playing!\n";
+        }
+    }
+
+    void Game::visitPokeCenter(N_Character::N_Player::Player &player)
+    {
+        if (player.chosenPokemon.health == player.chosenPokemon.maxHealth)
+        {
+            cout << "Your Pokemon is already at full health!\n";
+        }
+        else
+        {
+            cout << "You head to the PokeCenter.\n";
+            cout << "Healing your Pokemon...\n";
+            N_Utility::Utility::waitForEnter(); //Simulate a short pause for the healing process
+            player.chosenPokemon.heal();
+            cout << player.chosenPokemon.name << "'s health is fully restored!\n";
         }
     }
 }
