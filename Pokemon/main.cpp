@@ -31,7 +31,7 @@ int main() {
 
     //Start the main game loop
     N_Main::Game* game = new N_Main::Game();
-    game->gameLoop(player);
+    game->gameLoop(*player);
 
     delete(professor);
     delete(player);
