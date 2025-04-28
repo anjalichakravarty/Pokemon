@@ -9,10 +9,15 @@ namespace N_Pokemon{
 
         Charmander::Charmander() : Pokemon("Charmander", PokemonType::FIRE, 100, 35){}
 
-        void Charmander::flameBurst(Pokemon &target)
+        void Charmander::flameBurst(Pokemon* target)
         {
-            cout << name << "uses Flame Thrower on " << target.name << "!\n";
-            target.takeDamage(20);
+            cout << name << "uses Flame Thrower on " << target->name << "!\n";
+            target->takeDamage(20);
+        }
+
+        void Charmander::attack(Pokemon* target)
+        {
+            flameBurst(target);
         }
     }
 }

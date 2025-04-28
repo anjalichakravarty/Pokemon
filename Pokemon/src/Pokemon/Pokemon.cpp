@@ -24,19 +24,13 @@ namespace N_Pokemon {
     }
 
     //Copy Constructor
-    Pokemon::Pokemon(const Pokemon &other)
+    Pokemon::Pokemon(Pokemon* other)
     {
-        name = other.name;
-        type = other.type;
-        health = other.health;
-        maxHealth = other.maxHealth;
-        attackPower = other.attackPower;
-    }
-
-    void Pokemon::attack(Pokemon &target){
-        int damage = attackPower; //Use attackPower for damage calculation
-        cout << name << "attacks " << target.name << " for " << damage << " damage!\n";
-        target.takeDamage(damage); //Apply damage to target pokemon
+        name = other->name;
+        type = other->type;
+        health = other->health;
+        maxHealth = other->maxHealth;
+        attackPower = other->attackPower;
     }
 
     void Pokemon::takeDamage(int damage){
