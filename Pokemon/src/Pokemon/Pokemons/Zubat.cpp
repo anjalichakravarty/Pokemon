@@ -1,6 +1,8 @@
 #include "../../../include/Pokemon/Pokemons/Zubat.h"
 #include "../../../include/Pokemon/PokemonType.h"
 #include "../../../include/Utility/Utility.h"
+#include "../../../include/Pokemon/Move.h"
+
 #include <iostream>
 
 namespace N_Pokemon{
@@ -8,31 +10,30 @@ namespace N_Pokemon{
         using namespace std;
         using namespace N_Utility;
 
-        Zubat::Zubat() : Pokemon("Zubat", PokemonType::POISON, 100, 20) {}
+        Zubat::Zubat() : 
+        Pokemon("Zubat", PokemonType::POISON, 100, {
+            Move("BITE", 18),
+            Move("LEECH LIFE", 10)
+        }) {}
 
-        void Zubat::supersonic(Pokemon* target)
+
+        void Zubat::attack(Move selectedMove, Pokemon* target)
         {
-            cout << name << " used Supersonic!\n";
-            N_Utility::Utility::waitForEnter();
+            Pokemon::attack(selectedMove, target);
 
-            cout << "...\n";
-            N_Utility::Utility::waitForEnter();
-
-            target->takeDamage(attackPower);
-
-            if (target->isFainted())
+            if (selectedMove.name == "LEECH LIFE")
             {
-                cout << target->name << " fainted!\n"; 
-            }
-            else
-            {
-                cout << target->name << " has " << target->health << " HP left.\n";
-            }
-        }
+                // Restore 50% of the damage dealt
+                this->health += selectedMove.power * 0.5;
 
-        void Zubat::attack(Pokemon* target)
-        {
-            supersonic(target);
+                // Ensure health does not exceed maxHealth
+                if (this->health > this->maxHealth)
+                {
+                    this->health = this->maxHealth;
+                }
+
+                cout << "...and regained health!\n";
+            }
         }
     }
 }

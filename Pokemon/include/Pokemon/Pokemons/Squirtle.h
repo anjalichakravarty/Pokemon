@@ -6,13 +6,10 @@ namespace N_Pokemon{
     namespace N_Pokemons{
         
         class Squirtle : public Pokemon{
-            
-            private:
-                void waterSplash(Pokemon* target);
-                void attack(Pokemon* target) override;
 
             public:
                 Squirtle();
+                void attack(Move selectedMove, Pokemon* target) override;
         };
 
 

@@ -2,6 +2,8 @@
 #include "../../../include/Pokemon/Pokemons/Squirtle.h"
 #include "../../../include/Pokemon/PokemonType.h"
 #include "../../../include/Utility/Utility.h"
+#include "../../../include/Pokemon/Move.h"
+
 #include <iostream>
 
 namespace N_Pokemon{
@@ -9,31 +11,30 @@ namespace N_Pokemon{
         using namespace std;
         using namespace N_Utility;
 
-        Squirtle::Squirtle() : Pokemon("Squirtle", PokemonType::WATER, 100, 35){}
+        Squirtle::Squirtle() : 
+        Pokemon("Squirtle", PokemonType::WATER, 100, {
+            Move("WATER GUN", 20),
+            Move("TACKLE", 10),
+            Move("RAPID SPIN", 5)
+        }){}
 
-        void Squirtle::waterSplash(Pokemon* target)
+        void Squirtle::attack(Move selectedMove, Pokemon* target)
         {
-            cout << name << " used Water Splash!\n";
-            N_Utility::Utility::waitForEnter();
+            Pokemon::attack(selectedMove, target);
 
-            cout << "...\n";
-            N_Utility::Utility::waitForEnter();
-
-            target->takeDamage(attackPower);
-
-            if (target->isFainted())
+            if(selectedMove.name == "RAPID SPIN")
             {
-                cout << target->name << " fainted!\n"; 
-            }
-            else
-            {
-                cout << target->name << " has " << target->health << " HP left.\n";
-            }
-        }
+                // Random number of hits between 2 and 5
+                int hits = (rand() % 4) + 2;
 
-        void Squirtle::attack(Pokemon* target)
-        {
-            waterSplash(target);
+                // Split damage across hits
+                for (int i = 0; i < hits; i++)
+                {
+                    Pokemon::attack(selectedMove, target);
+                }
+
+                cout << "...and hit " << hits << " times!\n";
+            }
         }
     }
 }
