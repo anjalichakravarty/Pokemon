@@ -24,12 +24,12 @@ namespace N_Pokemon {
             Pokemon(string p_name, PokemonType p_type, int p_maxHealth, int p_attackPower);
 
             //Copy constructor
-            Pokemon(const Pokemon &other);
+            Pokemon(Pokemon* other);
 
             //Destructor
             ~Pokemon();
 
-            void attack(Pokemon &target);
+            virtual void attack(Pokemon *target) = 0;
             void takeDamage(int damage); //Method to reduce HP
             bool isFainted() const; // Method to check if the Pokemon has fainted
             void heal(); // Method to restore HP to max
