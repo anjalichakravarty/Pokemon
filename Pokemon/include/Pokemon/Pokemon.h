@@ -1,8 +1,12 @@
 // Pokemon.h
 #include <string>
 #include <vector>
+#include "Move.h"
+#include "StatusEffects/IStatusEffect.h"
+#include "StatusEffects/StatusEffectType.h"
 
 using namespace std;
+using namespace N_Pokemon::N_StatusEffects;
 
 namespace N_Pokemon {
     
@@ -17,6 +21,7 @@ namespace N_Pokemon {
             int health;
             int maxHealth;
             vector<Move> moves; //Store list of moves
+            IStatusEffect* appliedEffect;
 
             //Default constructor
             Pokemon();
@@ -27,14 +32,16 @@ namespace N_Pokemon {
             //Copy constructor
             Pokemon(Pokemon* other);
 
-            //Destructor
-            ~Pokemon();
-
             virtual void attack(Move selectedMove,Pokemon *target);
             void takeDamage(int damage); //Method to reduce HP
             bool isFainted() const; // Method to check if the Pokemon has fainted
             void heal(); // Method to restore HP to max
             void selectAndUseMove(Pokemon* target);
+            void reduceAttackPower(int reducedDamage);
+            bool canAttack();
+            void applyEffect(StatusEffectType effectToApply);
+            void clearEffect();
+            bool canApplyEffect();
 
         protected:
             //Base implementation for selecting and using a move
