@@ -1,26 +1,30 @@
 #include "../../include/Pokemon/Pokemon.h"
 #include "../../include/Pokemon/PokemonType.h"
+#include "../../include/Utility/Utility.h"
+#include "../../include/Pokemon/Move.h"
 #include <iostream>
 using namespace std;
 
 namespace N_Pokemon {
+
+    using namespace N_Utility;
+
     //Default Constructor
     Pokemon::Pokemon(){
     name = "Unknown"; 
     type = PokemonType::NORMAL;
     health = 50;
     maxHealth = 50;
-    attackPower = 10;
     }
 
     //Parametrised Constructor
-    Pokemon::Pokemon(string p_name, PokemonType p_type, int p_maxHealth, int p_attackPower) 
+    Pokemon::Pokemon(string p_name, PokemonType p_type, int p_health, vector<Move> p_moves) 
      {
         name = p_name; 
         type = p_type; 
-        maxHealth = p_maxHealth; 
-        health = p_maxHealth; 
-        attackPower = p_attackPower;
+        maxHealth = p_health; 
+        health = p_health; 
+        moves = p_moves;
     }
 
     //Copy Constructor
@@ -30,7 +34,7 @@ namespace N_Pokemon {
         type = other->type;
         health = other->health;
         maxHealth = other->maxHealth;
-        attackPower = other->attackPower;
+        moves = other->moves;
     }
 
     void Pokemon::takeDamage(int damage){
@@ -39,6 +43,69 @@ namespace N_Pokemon {
         {
             health = 0; // Ensure HP doesn't go below 0
         }
+    }
+
+    void Pokemon::selectAndUseMove(Pokemon* target)
+    {
+        printAvailableMoves();
+
+        int choice = selectMove();
+        Move selectedMove = moves[choice-1];
+
+        useMove(selectedMove, target);
+    }
+
+    void Pokemon::printAvailableMoves()
+    {
+        cout << name << "'s available moves:\n";
+
+        //List out all moves for the player to choose from
+        for (size_t i = 0; i < moves.size(); i++)
+        {
+            cout << i + 1 << ": " << moves[i].name << "(Power : " << moves[i].power << "}\n";
+        }
+    }
+
+    int Pokemon::selectMove()
+    {
+        //Ask the player to select a move
+        int choice;
+        cout << "Choose a move: ";
+        cin >> choice;
+
+        //Validate the choice
+        while (choice < 1 || choice > static_cast<int>(moves.size()))
+        {
+            cout << "Invalid choice. Try again: ";
+            cin >> choice;
+        }
+
+        return choice;
+    }
+
+    void Pokemon::useMove(Move selectedMove, Pokemon* target)
+    {
+        cout << name << " used " << selectedMove.name << "!\n";
+        attack(selectedMove, target);
+
+        N_Utility::Utility::waitForEnter();
+
+        cout << "...\n";
+        N_Utility::Utility::waitForEnter();
+
+        if (target->isFainted())
+        {
+            cout << target->name << " fainted!\n";
+        }
+        else
+        {
+            cout << target->name << " has " << target->health << " HP left.\n";
+        }
+    }
+
+    void Pokemon::attack(Move selectedMove, Pokemon* target)
+    {
+        target->takeDamage(selectedMove.power);
     }
 
     bool Pokemon::isFainted() const{

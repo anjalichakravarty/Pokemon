@@ -19,22 +19,21 @@ namespace N_Main {
     
     Game::Game(){
         // Create a sample grass environment with actual Pokemon objects
-        forestGrass = {
-            "Forest",
+        forestGrass = {"Forest",
             {
-                Pidgey(), Caterpie(), Zubat()
+                new Pidgey(), new Caterpie(), new Zubat()
             },
             70
         };
     }
 
-    void Game::gameLoop(N_Character::N_Player::Player &player)
+    void Game::gameLoop(N_Character::N_Player::Player* player)
     {
-        BattleManager battleManager;
+
         int choice;
         bool keepPlaying = true;
-        WildEncounterManager encounterManager;
-        N_Pokemon::Pokemon wildPokemon;
+        BattleManager* battleManager = new BattleManager();
+        WildEncounterManager* encounterManager = new WildEncounterManager();
 
         while (keepPlaying){
             
@@ -42,7 +41,7 @@ namespace N_Main {
             Utility::clearConsole();
 
             //Display options for players
-            cout << "\nWhat would you like to do next, " << player.name << "?\n";
+            cout << "\nWhat would you like to do next, " << player->name << "?\n";
             cout << "1. Battle wild Pokemons\n";
             cout << "2. Visit PokeCenter\n";
             cout << "3. Challenge Gyms\n";
@@ -57,8 +56,8 @@ namespace N_Main {
             switch(choice) {
                 case 1:{
                     // Create a scope within case 1                   
-                    wildPokemon = encounterManager.getRandomPokemonFromGrass(forestGrass);
-                    battleManager.startBattle(player, wildPokemon);
+                    wildPokemon = encounterManager->getRandomPokemonFromGrass(forestGrass);
+                    battleManager->startBattle(player, wildPokemon);
                     break;
                 }
                 
@@ -84,16 +83,18 @@ namespace N_Main {
                     break;
 
                 //Wait for Enter key before the screen is cleared and the menu is shown again
-                Utility::waitForEnter();
-            }
-
-            cout << "Goodbye, " << player.name << "! Thank you for playing!\n";
+            }            
         }
+        Utility::waitForEnter();
+        cout << "Goodbye, " << player->name << "! Thank you for playing!\n";
+
+        delete(encounterManager);
+        delete(battleManager);
     }
 
-    void Game::visitPokeCenter(N_Character::N_Player::Player &player)
+    void Game::visitPokeCenter(N_Character::N_Player::Player* player)
     {
-        if (player.chosenPokemon.health == player.chosenPokemon.maxHealth)
+        if (player->chosenPokemon->health == player->chosenPokemon->maxHealth)
         {
             cout << "Your Pokemon is already at full health!\n";
         }
@@ -102,8 +103,13 @@ namespace N_Main {
             cout << "You head to the PokeCenter.\n";
             cout << "Healing your Pokemon...\n";
             N_Utility::Utility::waitForEnter(); //Simulate a short pause for the healing process
-            player.chosenPokemon.heal();
-            cout << player.chosenPokemon.name << "'s health is fully restored!\n";
+            player->chosenPokemon->heal();
+            cout << player->chosenPokemon->name << "'s health is fully restored!\n";
         }
+    }
+
+    Game::~Game()
+    {
+        delete(wildPokemon);
     }
 }
